@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use JD\Cloudder\Facades\Cloudder;
 
 use \App\User;
 use \App\Post;
@@ -68,12 +69,26 @@ class PostController extends Controller
      * 投稿データをDBに保存する
      * @param Request $request
      * @param object $post
-     * 
+     * @param object $image
      * @return redirect
      */
     public function store(Request $request)
     {
         $post = new Post;
+
+        //ユーザーが画像をアップロードした時の処理
+        if ($image = $request->file('image')) {
+            $image_path = $image->getRealPath();
+            Cloudder::upload($image_path, null);
+            //直前にアップロードされた画像のpublicIdを取得する
+            $publicId = Cloudder::getPublicId();
+            $logoUrl = Cloudder::secureShow($publicId, [
+                'width'     => 300,
+                'height'    => 300
+            ]);
+            $post->image_path = $logoUrl;
+            $post->public_id  = $publicId;
+        }
         $post->fill($request->all())->save();
         session()->flash('flash_message', '投稿が完了しました');
         return redirect('/');
