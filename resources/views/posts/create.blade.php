@@ -12,7 +12,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <form method="POST" action="" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                         @csrf
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">漁港名</label>
@@ -26,7 +26,7 @@
                                <select class="form-control" name="port_id" id="">
                                     <option value="0">選択してください</option>
                                     @foreach($ports as $port)
-                                        <option value="{{ $port->port_id }}">{{ $port->port_name }}</option>
+                                        <option value="{{ $port->id }}">{{ $port->port_name }}</option>
                                     @endforeach
                                </select>
                             </div>

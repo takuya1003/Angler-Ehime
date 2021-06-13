@@ -47,6 +47,9 @@ class PostController extends Controller
 
     /**
      * 投稿ページ
+     * @param object $ports
+     * 
+     * @return view
      */
     public function create()
     {
@@ -55,10 +58,26 @@ class PostController extends Controller
              return abort(404);
          }
          $ports = Port::all();
-
+        //  dd($ports);
          return view('posts.create', [
              'ports' => $ports
          ]);
     }
 
+    /**
+     * 投稿データをDBに保存する
+     * @param Request $request
+     * @param object $post
+     * 
+     * @return redirect
+     */
+    public function store(Request $request)
+    {
+        $post = new Post;
+        $post->fill($request->all())->save();
+        session()->flash('flash_message', '投稿が完了しました');
+        return redirect('/');
+    }
+
+    
 }
