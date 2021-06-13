@@ -15,10 +15,17 @@
 //     return view('welcome');
 // });
 
+use App\Http\Controllers\PostController;
+
 Auth::routes();
 Route::get('/', 'PostController@index')->name('posts.index');
-Route::get('/create', 'PostController@create')->name('posts.create');
-Route::post('/store', 'PostController@store')->name('posts.store');
+
+Route::prefix('posts')->group(function (){
+    Route::get('/create', 'PostController@create')->name('posts.create');
+    Route::post('/store', 'PostController@store')->name('posts.store');
+    Route::get('/{id}/', 'PostController@show')->name('posts.show');
+   
+});
 
 
 // Route::get('/home', 'HomeController@index')->name('home');

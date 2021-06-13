@@ -79,5 +79,21 @@ class PostController extends Controller
         return redirect('/');
     }
 
-    
+    /**
+     * 投稿の詳細ページ
+     * 
+     * 
+     */
+    public function show($id)
+    {
+        $posts = Post::find($id);
+        if(is_null($posts)) {
+            \Session::flash('err_msg','データがありません');
+            return redirect('/');
+        }
+        return view('posts.show', [
+            'posts' => $posts
+        ]);
+    }
+
 }
