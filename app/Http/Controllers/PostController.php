@@ -69,7 +69,11 @@ class PostController extends Controller
      * 投稿データをDBに保存する
      * @param Request $request
      * @param object $post
-     * @param object $image
+     * @param string $image
+     * @param string $image_path
+     * @param string $publicId
+     * @param string $logoUrl
+     * 
      * @return redirect
      */
     public function store(Request $request)
@@ -96,8 +100,10 @@ class PostController extends Controller
 
     /**
      * 投稿の詳細ページ
+     * @param int $id
+     * @param object $posts
      * 
-     * 
+     * @return view
      */
     public function show($id)
     {
