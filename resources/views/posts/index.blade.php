@@ -64,20 +64,16 @@
                         <article>
                             <div class="l-content">
                                 <div class="p-postCardList">
-                                    <a href="{{ route('users.show', [ $post->user_id ]) }}">
-                                        {{ $post->user->name }}
-                                    </a>
+                                    
                                 </div>
                                 <div class="card-body">
                                     <h3 class="">漁港名： 
                                         <a href="{{ route('posts.index', [ 'port_name' => $post->port_name ]) }}">
-                                            {{ $post->port_name }}
+                                            {{ $post->port->port_name }}
                                         </a>
                                     </h3>
                                     <h6 class="">
-                                        <a href="{{ route('posts.index', [ 'prefectures_id' => $post->prefectures_id ]) }}">
-                                            [{{ $post->prefecture->prefectures_name }}]
-                                        </a>
+                                        
                                     </h6>
                                     <h5 class="">内容：{{ $post->content }}</h5>
                                     <div class="">
@@ -86,7 +82,7 @@
                                         @endif
                                     </div>
                                     <div class="text-center top_btn">
-                                        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary text-center">詳細</a>
+
                                     </div>
                                     <p class="created-at">{{ $post->created_at }}</p>
                                 </div>
