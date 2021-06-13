@@ -82,7 +82,7 @@
                                         @endif
                                     </div>
                                     <div class="text-center top_btn">
-
+                                        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary text-center">詳細</a>
                                     </div>
                                     <p class="created-at">{{ $post->created_at }}</p>
                                 </div>

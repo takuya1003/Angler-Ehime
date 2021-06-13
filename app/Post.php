@@ -28,5 +28,10 @@ class Post extends Model
         return $this->belongsTo(\App\Port::class, 'port_id');
     }
 
+    public function post()
+    {
+        
+    }
+
 
 }
