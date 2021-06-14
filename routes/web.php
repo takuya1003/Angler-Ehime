@@ -15,7 +15,7 @@
 //     return view('welcome');
 // });
 
-use App\Http\Controllers\PostController;
+
 
 Auth::routes();
 Route::get('/', 'PostController@index')->name('posts.index');
@@ -27,5 +27,9 @@ Route::prefix('posts')->group(function (){
    
 });
 
+Route::prefix('create')->group(function (){
+    Route::get('/create', 'CommentController@create')->name('comments.create');
+    Route::post('/store', 'CommentController@store')->name('comments.store');
+});
 
-// Route::get('/home', 'HomeController@index')->name('home');
+

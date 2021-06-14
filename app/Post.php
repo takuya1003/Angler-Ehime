@@ -30,8 +30,12 @@ class Post extends Model
 
     public function post()
     {
-        
+
     }
 
+    public function comments(){
+        return $this->hasMany(\App\Comment::class,'post_id', 'id')
+        ->orderBy('id','desc');
+    }
 
 }
