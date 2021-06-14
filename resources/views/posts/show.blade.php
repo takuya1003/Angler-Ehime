@@ -31,8 +31,15 @@
                     </div>
                     <div class="comment-card">
                         <h4 class="">コメント一覧</h4>
-                        
-                        
+                        @foreach($posts->comments as $comment)
+                        <div class="comment-list">
+                                <h5 class="name">{{ $comment->user->name }}</h5>
+                            <p class="comment">{{ $comment->comment }}</p>
+                            <small class="comment-time">{{ $comment->created_at }}</small>
+                            
+                        </div>
+                        @endforeach
+                        <a href="{{ route('comments.create', ['post_id' => $posts->id]) }}" class="btn btn-info btn-comment">コメントする</a>
                         <a href="{{ route('posts.index') }}" class="btn btn-primary btn-back">戻る</a>
                     </div>
                 </div>

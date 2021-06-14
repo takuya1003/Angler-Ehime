@@ -17,11 +17,11 @@ class PostController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * 
      */
-    // public function __construct()
+    // public function __construct(Post $post)
     // {
-    //     $this->middleware('auth');
+    //     $this->post = $post;
     // }
 
     /**
