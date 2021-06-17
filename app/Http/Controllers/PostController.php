@@ -116,5 +116,32 @@ class PostController extends Controller
             'posts' => $posts
         ]);
     }
+    
+    /**
+     * 編集画面
+     * @param int $id
+     * @param object $posts
+     * 
+     * @return view
+     */
+     public function edit($id)
+     {
+         $posts = Post::find($id);
+         $ports = Port::all();
+         return view('posts.edit', [
+             'posts' => $posts,
+             'ports' => $ports
+         ]);
+     }
+
+     /**
+      * アップデート機能
+      */
+      public function update(Request $request, $id)
+      {
+        $post = Post::find($id);
+        $post->fill($request->all())->save();
+        return redirect('/');
+      }
 
 }
